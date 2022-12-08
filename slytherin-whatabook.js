@@ -271,10 +271,10 @@ db.customers.insertOne(customer9)
 
 //Week 8 Queries
 //Displays all books
-db.books.find()
+console.log("db.books.find()");
 //Displays by given genre
-db.books.find({"genre" : "Thriller"})
+console.log("db.books.find({ genre : 'Thriller'})")
 //Displays by given author
-db.books.find({ "author": "Stephen King"})
+console.log("db.books.find({ author: 'Stephen King'})")
 //Displays by given bookId
-db.books.find({ "bookId" : "b1013" })
+console.log("db.books.find({ bookId : 'b1013' })")
