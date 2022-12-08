@@ -12,4 +12,4 @@ db.books.find({"genre" : "Thriller"})
 //Displays by given author
 db.books.find({ "author": "Luna Lovegood"}
 //Displays by given bookId
-db.books.find({ "bookId" : "1008" })
+db.books.find({ "bookId" : "b1013" })
