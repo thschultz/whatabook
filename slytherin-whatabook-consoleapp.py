@@ -26,8 +26,6 @@ def printWelcome():
     print("2 - List books by criteria")
     print("3 - View Wish List")
 
-
-
 # choice is evaluated and sent to the appropriate function
 # no need to hve a separate function for listing all books, so that is executed immediately
 # the other choices have further selections that need to be made
@@ -77,8 +75,6 @@ def listByGenre():
     print("4 - Fantasy")
     print("5 - How-To")
     print("\n0 - Go Back")      
-
-
 
 #Evaluate the selection and execute the appropriate mongo command.
 #TODO need to format the output better, not sure how to do this yet....  pretty()??, set project and sort fields??
