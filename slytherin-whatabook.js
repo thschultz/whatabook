@@ -190,70 +190,141 @@ customer0 = {
     "firstName": "Bonnie",
     "lastName": "Swanson",
     "customerId": "c1001",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "C# Programming",
+            "author": "Barbara Doyle",
+            "genre": "How-To",
+            "bookId": "b1015"
+        }
+    ]
 }
 
 customer1 = {
     "firstName": "Peter",
     "lastName": "Griffin",
     "customerId": "c1002",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "The Hobbit",
+            "author": "J.R.R. Tolkien",
+            "genre": "Fantasy",
+            "bookId": "b1012"
+        }
+    ]
 }
 
 customer2 = {
     "firstName": "Lois",
     "lastName": "Griffin",
     "customerId": "c1003",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "The War of The Worlds",
+            "author": "H.G Wells",
+            "genre": "Fantasy",
+            "bookId": "b1011"
+        }
+    ]
 }
 
 customer3 = {
     "firstName": "Joe",
     "lastName": "Swanson",
     "customerId": "c1004",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "The Forgotten 500",
+            "author": "Gregory Freeman",
+            "genre": "Non-Fiction",
+            "bookId": "b1007"
+        }
+    ]
 }
 
 customer4 = {
     "firstName": "Meg",
     "lastName": "Griffin",
     "customerId": "c1005",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "The Shining",
+            "author": "Stephen King",
+            "genre": "Horror",
+            "bookId": "b1005"
+        }
+    ]
 }
 
 customer5 = {
     "firstName": "Cleveland",
     "lastName": "Brown",
     "customerId": "c1006",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "Thinner",
+            "author": "Richard Bachman",
+            "genre": "Horror",
+            "bookId": "b1004"
+        }
+         
+    ]
 }
 
 customer6 = {
     "firstName": "Evil",
     "lastName": "Monkey",
     "customerId": "c1007",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "The Shining",
+            "author": "Stephen King",
+            "genre": "Horror",
+            "bookId": "b1005"
+        }
+    ]
 }
 
 customer7 = {
     "firstName": "Neil",
     "lastName": "Goldman",
     "customerId": "c1008",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "Before We We're Yours",
+            "author": "Lisa Wingate",
+            "genre": "Non-Fiction",
+            "bookId": "b1009"
+        }
+    ]
 }
 
 customer8 = {
     "firstName": "Loretta",
     "lastName": "Brown",
     "customerId": "c1009",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "Thinner",
+            "author": "Richard Bachman",
+            "genre": "Horror",
+            "bookId": "b1004"
+        }
+    ]
 }
 
 customer9 = {
     "firstName": "Glenn",
     "lastName": "Quagmire",
     "customerId": "c1010",
-    "wishlist": []
+    "wishlist": [
+        {
+            "title": "Getting Started With Wordpress",
+            "author": "Todd Kelsey",
+            "genre": "How-To",
+            "bookId": "b1013"
+        }
+    ]
 }
 
 
