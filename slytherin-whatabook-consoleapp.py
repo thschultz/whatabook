@@ -2,6 +2,7 @@
 # // Author:  John Vanhessche 
 # // Date: 8 December 2022 
 # // Description:  slytherin-whatabook-consoleapp.py 
+# // Modified By: Walter McCue on 12 December 2022
 
 #importing MongoClient
 from pymongo import MongoClient;
@@ -9,10 +10,10 @@ import datetime;
 
 #Connecting to MongoDB
 url = "mongodb+srv://web335_user:s3cret@bellevueuniversity.ouotidt.mongodb.net/web335DBretryWrites=true&w=majority"
-client = MongoClient(url);
+client = MongoClient(url)
 
 #access variable for web335DB
-db = client['web335DB'];
+db = client['web335DB']
 
 ########################################Application Start#############################################################################
 
@@ -21,10 +22,11 @@ def main():
     
 # Main welcome script to capture user initial choice
 def printWelcome():
-    print("Welcome to WhatABook.  Please enter a choice below:")
+    print("\n\nWelcome to WhatABook.  Please enter a choice below:")
     print("1 - List ALL books")
     print("2 - List books by criteria")
     print("3 - View Wish List")
+    print("4 - Exit")
 
 # choice is evaluated and sent to the appropriate function
 # no need to hve a separate function for listing all books, so that is executed immediately
@@ -33,13 +35,14 @@ def printWelcome():
     
     if choice == 1:
         for book in db.books.find({}):
-            print(book);
+            print(book)
+            main()
     elif choice == 2:
-        listByChoice();
+        listByChoice()
     elif choice == 3:
-        wishList();
+        wishList()
     else:
-        exit()      #any invalid selection terminates the application.....for now.
+        exit()      #any invalid selection terminates the application.
 
 
 
@@ -54,15 +57,29 @@ def listByChoice():
     criteria = int(input("\nEnter a selection: "))    #capture user input
     
     if criteria == 1:
-        listByAuthor();
+        listByAuthor()
     elif criteria == 2:
-        listByGenre();
+        listByGenre()
     elif criteria == 3:
-        listByBookId();
+        listByBookId()
     elif criteria == 0:         #They can escape back to the Welcome screen by typing 0
-        printWelcome();
+        printWelcome()
     else:
-        listByChoice();         #typing anything other than the valid selections, returns to the top of the function
+        print("Not a valid selection")
+        listByChoice()         #typing anything other than the valid selections, returns to the top of the function
+
+
+
+# The function will ask the user type in an author, then it should return books for that author.
+def listByAuthor():
+    author = str(input("\nFind an author.  Example: John Grisham: "))    
+    authorObject = db.books.find_one({"author": author})
+    if(authorObject):
+        print(authorObject)
+        main()
+    else:
+        print("Not a Valid Author")
+        listByAuthor()
 
 
 
@@ -84,18 +101,23 @@ def listByGenre():
     if genre == 1:
         for book in db.books.find({"genre": "Thriller"}):
             print(book)
+            main()
     elif genre == 2:
         for book in db.books.find({"genre": "Horror"}):
             print(book)
+            main()
     elif genre == 3:
         for book in db.books.find({"genre": "Non-Fiction"}):
             print(book)
+            main()
     elif genre == 4:
         for book in db.books.find({"genre": "Fantasy"}):
             print(book)
+            main()
     elif genre == 5:
         for book in db.books.find({"genre": "How-To"}):
             print(book)
+            main()
     elif genre == 0:
         listByChoice();     #escapes back to parent
     else:
@@ -105,48 +127,47 @@ def listByGenre():
 
 #This function will return a book by it's bookId.  This is NOT the mongo _id.  
 def listByBookId():    
-    bookId  = str(input("\nEnter a four digit book Id  b-"))   #capture user input
-    for book in db.books.find({"bookId": "b"+bookId}):   #appending 'b' to user entered number for value to key.
-        print(book);
-    # TODO error handling for invalid number
-
+    bookId  = str(input("\nEnter a five-digit book Id (example: b****): "))   #capture user input
+    bookObject = db.books.find_one({"bookId": bookId})
+    
+    if(bookObject):
+        print(bookObject)
+        main()
+    else:
+        print("Not a valid bookId")
+        listByBookId()
 
 
 
 #This function will ask a user to enter their customer Id.  it will then return the books in that customer's wishlist to that Id.
-#TODO this will return an embedded object(s).
 def wishList():
-    print("Wish List is under construction")  
-    # wishList = str(input("\nEnter your customer Id c-"))
-    # for customer in db.customer.find(wishList, 
-    # {
+    print("To view a wishlist, please type the customerId:")
+    customerId = str(input("\nEnter your five-digit customer Id (example: c****): "))  #capture user input
+    customerObject = db.customers.find_one({"customerId": customerId})
 
-    # })
+    if(customerObject):
+        pipeline = [
+            {
+                "$match": {
+                    "customerId": customerId
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "wishlist": 1
+                }
+            }
+        ]
+        results = db.customers.aggregate(pipeline)
+        print("Wishlist for " + customerObject["firstName"] + " " + customerObject["lastName"] + ": ")
+        for wishlist in results:
+            print(wishlist)
+        main()
+    else:
+        print("Customer not found")
+        wishList()
 
-
-
-#under construction.  The function will ask the user type in an author, then it should return books for that author.
-def listByAuthor():
-    author = str(input("\nFind an author.  Example: John Grisham: "))    
-    for author in db.books.find({"author": author}):
-        print(author);
-#TODO develop an if/else to use $exist operator to check for existence of inputted author, if found return author, otherwise return error.    
-        
-
-
-
-
-# #possible future console requirement
-# def addBookToWishList():
-#     print("under construction")
-
-# #possible future console requirement
-# def removeBookFromWishList():
-#     print("under construction")
-
-# def listCustomers():
-#     listById();
-#     listByLastName();
 
 
 main()
