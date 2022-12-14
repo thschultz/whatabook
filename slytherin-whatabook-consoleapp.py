@@ -22,7 +22,7 @@ def main():
     
 # Main welcome script to capture user initial choice
 def printWelcome():
-    print("\n\nWelcome to WhatABook.  Please enter a choice below:")
+    print("Welcome to WhatABook.  Please enter a choice below:")
     print("1 - List ALL books")
     print("2 - List books by criteria")
     print("3 - View Wish List")
@@ -34,12 +34,12 @@ def printWelcome():
     choice = int(input("\nEnter a selection: "))    #capture user input
     
     if choice == 1:
-        for book in db.books.find({}):
+        for book in db.books.find():
             print(
               "Book Title: ", book["title"] + "\n"
               "Genre: ", book["genre"] + "\n"
               "Author: " , book["author"] + "\n"
-              "Book ID: ", book["bookId"] + "\n"
+              "Book ID: ", book["bookId"] + "\n\n"
             )
         main()
     elif choice == 2:
@@ -83,7 +83,7 @@ def listByAuthor():
         print("Book Title: ", authorObject["title"] + "\n"
               "Genre: ", authorObject["genre"] + "\n"
               "Author: " , authorObject["author"] + "\n"
-              "Book ID: ", authorObject["bookId"] + "\n")
+              "Book ID: ", authorObject["bookId"] + "\n\n")
         main()
     else:
         print("Not a Valid Author")
@@ -111,35 +111,35 @@ def listByGenre():
             print("Book Title: ", book["title"] + "\n"
               "Genre: ", book["genre"] + "\n"
               "Author: " , book["author"] + "\n"
-              "Book ID: ", book["bookId"] + "\n")
+              "Book ID: ", book["bookId"] + "\n\n")
         main()
     elif genre == 2:
         for book in db.books.find({"genre": "Horror"}):
             print("Book Title: ", book["title"] + "\n"
               "Genre: ", book["genre"] + "\n"
               "Author: " , book["author"] + "\n"
-              "Book ID: ", book["bookId"] + "\n")
+              "Book ID: ", book["bookId"] + "\n\n")
         main()
     elif genre == 3:
         for book in db.books.find({"genre": "Non-Fiction"}):
             print("Book Title: ", book["title"] + "\n"
               "Genre: ", book["genre"] + "\n"
               "Author: " , book["author"] + "\n"
-              "Book ID: ", book["bookId"] + "\n")
+              "Book ID: ", book["bookId"] + "\n\n")
         main()
     elif genre == 4:
         for book in db.books.find({"genre": "Fantasy"}):
             print("Book Title: ", book["title"] + "\n"
               "Genre: ", book["genre"] + "\n"
               "Author: " , book["author"] + "\n"
-              "Book ID: ", book["bookId"] + "\n")
+              "Book ID: ", book["bookId"] + "\n\n")
         main()
     elif genre == 5:
         for book in db.books.find({"genre": "How-To"}):
             print("Book Title: ", book["title"] + "\n"
               "Genre: ", book["genre"] + "\n"
               "Author: " , book["author"] + "\n"
-              "Book ID: ", book["bookId"] + "\n")
+              "Book ID: ", book["bookId"] + "\n\n")
         main()
     elif genre == 0:
         listByChoice();     #escapes back to parent
@@ -157,7 +157,7 @@ def listByBookId():
         print("Book Title: ", bookObject["title"] + "\n"
               "Genre: ", bookObject["genre"] + "\n"
               "Author: " , bookObject["author"] + "\n"
-              "Book ID: ", bookObject["bookId"] + "\n")
+              "Book ID: ", bookObject["bookId"] + "\n\n")
         main()
     else:
         print("Not a valid bookId")
@@ -185,10 +185,12 @@ def wishList():
                 }
             }
         ]
-        results = db.customers.aggregate(pipeline)
         print("Wishlist for " + customerObject["firstName"] + " " + customerObject["lastName"] + ": ")
-        for wishlist in results:
-            print(wishlist)
+        for book in customerObject["wishlist"]:
+            print("Title: ", book["title"] + "\n"
+                "Author: ", book["author"] + "\n"
+                "Genre: ", book["genre"] + "\n"
+                "Book ID: ",  book["bookId"] + "\n\n")
         main()
     else:
         print("Customer not found")
