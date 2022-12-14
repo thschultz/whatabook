@@ -35,8 +35,13 @@ def printWelcome():
     
     if choice == 1:
         for book in db.books.find({}):
-            print(book)
-            main()
+            print(
+              "Book Title: ", book["title"] + "\n"
+              "Genre: ", book["genre"] + "\n"
+              "Author: " , book["author"] + "\n"
+              "Book ID: ", book["bookId"] + "\n"
+            )
+        main()
     elif choice == 2:
         listByChoice()
     elif choice == 3:
@@ -75,7 +80,10 @@ def listByAuthor():
     author = str(input("\nFind an author.  Example: John Grisham: "))    
     authorObject = db.books.find_one({"author": author})
     if(authorObject):
-        print(authorObject)
+        print("Book Title: ", authorObject["title"] + "\n"
+              "Genre: ", authorObject["genre"] + "\n"
+              "Author: " , authorObject["author"] + "\n"
+              "Book ID: ", authorObject["bookId"] + "\n")
         main()
     else:
         print("Not a Valid Author")
@@ -100,24 +108,39 @@ def listByGenre():
 #evaluate user input and select the appropriate mongo command.
     if genre == 1:
         for book in db.books.find({"genre": "Thriller"}):
-            print(book)
-            main()
+            print("Book Title: ", book["title"] + "\n"
+              "Genre: ", book["genre"] + "\n"
+              "Author: " , book["author"] + "\n"
+              "Book ID: ", book["bookId"] + "\n")
+        main()
     elif genre == 2:
         for book in db.books.find({"genre": "Horror"}):
-            print(book)
-            main()
+            print("Book Title: ", book["title"] + "\n"
+              "Genre: ", book["genre"] + "\n"
+              "Author: " , book["author"] + "\n"
+              "Book ID: ", book["bookId"] + "\n")
+        main()
     elif genre == 3:
         for book in db.books.find({"genre": "Non-Fiction"}):
-            print(book)
-            main()
+            print("Book Title: ", book["title"] + "\n"
+              "Genre: ", book["genre"] + "\n"
+              "Author: " , book["author"] + "\n"
+              "Book ID: ", book["bookId"] + "\n")
+        main()
     elif genre == 4:
         for book in db.books.find({"genre": "Fantasy"}):
-            print(book)
-            main()
+            print("Book Title: ", book["title"] + "\n"
+              "Genre: ", book["genre"] + "\n"
+              "Author: " , book["author"] + "\n"
+              "Book ID: ", book["bookId"] + "\n")
+        main()
     elif genre == 5:
         for book in db.books.find({"genre": "How-To"}):
-            print(book)
-            main()
+            print("Book Title: ", book["title"] + "\n"
+              "Genre: ", book["genre"] + "\n"
+              "Author: " , book["author"] + "\n"
+              "Book ID: ", book["bookId"] + "\n")
+        main()
     elif genre == 0:
         listByChoice();     #escapes back to parent
     else:
@@ -131,7 +154,10 @@ def listByBookId():
     bookObject = db.books.find_one({"bookId": bookId})
     
     if(bookObject):
-        print(bookObject)
+        print("Book Title: ", bookObject["title"] + "\n"
+              "Genre: ", bookObject["genre"] + "\n"
+              "Author: " , bookObject["author"] + "\n"
+              "Book ID: ", bookObject["bookId"] + "\n")
         main()
     else:
         print("Not a valid bookId")
