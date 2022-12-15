@@ -5,6 +5,7 @@
     Description: MongoDB Shell Scripts for the WhatAbook customers and books collections.
  */
 
+//connection string: mongosh "mongodb+srv://bellevueuniversity.ouotidt.mongodb.net/web335DB" --apiVersion 1 --username web335_user
 
 //Drop books and customers collections
 db.books.drop()
