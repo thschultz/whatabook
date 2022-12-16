@@ -343,10 +343,17 @@ db.customers.insertOne(customer9)
 
 //Week 8 Queries
 //Displays all books
-console.log("db.books.find()");
+console.log(db.books.find());
 //Displays by given genre
-console.log("db.books.find({ genre : 'Thriller'})")
+console.log(db.books.find({ 'genre' : 'Thriller'}))
 //Displays by given author
-console.log("db.books.find({ author: 'Stephen King'})")
+console.log(db.books.find({ "author": 'Stephen King'}))
 //Displays by given bookId
-console.log("db.books.find({ bookId : 'b1013' })")
+console.log(db.books.find({ "bookId" : 'b1013' }))
+//Displays customer wishlist by customerId
+console.log(db.customers.find({ "customerId": "c1005" }, { wishlist: 1 }))
+//Adds book to customer wishlist
+console.log(db.customers.updateOne({ "customerId": "c1005" }, { $push: {"wishlist": { title: "Dark of the Moon", genre: "Thriller", author : "John Sanford", bookId: "b1002", },},}))
+//Removes book from customer wishlist.
+console.log(db.customers.updateOne({ "customerId": "c1005" }, { $pull: {"wishlist": { title: "Dark of the Moon", genre: "Thriller", author : "John Sanford", bookId: "b1002", },},}))
+
