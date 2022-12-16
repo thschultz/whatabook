@@ -350,6 +350,8 @@ console.log(db.books.find({ 'genre' : 'Thriller'}))
 console.log(db.books.find({ "author": 'Stephen King'}))
 //Displays by given bookId
 console.log(db.books.find({ "bookId" : 'b1013' }))
+
+//Week 9 Queries
 //Displays customer wishlist by customerId
 console.log(db.customers.find({ "customerId": "c1005" }, { wishlist: 1 }))
 //Adds book to customer wishlist
